@@ -101,11 +101,7 @@ export const batchCheckSavedJobsHandler = async (req: RequestWithUser, res: Resp
     const userId = req.user.userId;
     const { jobIds } = req.body;
 
-    console.log("User id in batch: ", userId)
-
     const savedJobsStatus = await areJobsSaved(jobIds, userId);
-
-    console.log("Saved Jobs Status: ", savedJobsStatus);
 
     res.status(200).json({ 
       success: true,

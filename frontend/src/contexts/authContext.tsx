@@ -179,7 +179,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const value = {
     currentUser: currentUser || null,
     isAuthenticated,
-    isLoading,
+    isLoading,  
     refetchUser,
     login,
     register,

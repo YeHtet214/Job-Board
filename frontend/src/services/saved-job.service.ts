@@ -45,7 +45,7 @@ class SavedJobService extends ApiService {
    * @param jobIds - Array of job IDs to check
    * @returns Map of job IDs to their saved status
    */
-  public async areJobsSaved(jobIds: string[]): Promise<Record<string, JobSavedStatus>> {
+  public async areJobsSaved(jobIds: string[]) {
     if (!jobIds.length) return {};
 
     try {
@@ -53,6 +53,8 @@ class SavedJobService extends ApiService {
         this.endpoints.CHECK_BATCH,
         { jobIds }
       );
+
+      console.log("Are saved jobs return: ", response.data.data)
       return response.data.data;
 
     } catch (error) {

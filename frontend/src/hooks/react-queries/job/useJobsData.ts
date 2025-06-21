@@ -214,7 +214,7 @@ interface UseJobsDataParams {
   initialSortBy?: SortOption;
 }
 
-interface UseJobsDataReturn {
+export interface UseJobsDataReturn {
   jobs: Job[];
   isLoading: boolean;
   error: unknown;

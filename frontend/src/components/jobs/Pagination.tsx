@@ -64,7 +64,7 @@ const Pagination: React.FC = () => {
   const pageNumbers = getPageNumbers();
 
   return (
-    <div className="mt-8 flex justify-center">
+    <div data-testId="pagination" className="mt-8 flex justify-center">
       <nav className="flex items-center space-x-1">
         <Button
           variant="outline"

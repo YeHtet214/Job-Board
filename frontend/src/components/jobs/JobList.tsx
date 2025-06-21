@@ -1,39 +1,34 @@
 import React from 'react';
-import JobCard from './JobCard';
-import Pagination from './Pagination';
+import JobCard from '@/components/jobs/JobCard';
+import Pagination from '@/components/jobs/Pagination';
 import { Job, JobFilterType } from '@/types/job.types';
 import { AlertCircle, Search } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import JobSorting from './JobSorting';
+import JobSorting from '@/components/jobs/JobSorting';
 import { useAuth } from '@/contexts/authContext';
 import { useBatchJobSavedStatus, useJobsData } from '@/hooks/react-queries/job';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 const JobList: React.FC = () => {
   const { jobs, isLoading, error, keyword, location, jobTypes, experienceLevel, totalCount } = useJobsData();
   const { isAuthenticated, currentUser } = useAuth();
 
-  console.log("JObs in list: ",jobs);
-
   // Check if user is a job seeker for saved job functionality
   const isJobSeeker = currentUser?.role === 'JOBSEEKER';
-  
+
   // Get all job IDs for batch checking saved status
   const jobIds = jobs.map(job => job.id);
-  
+
   // Use the batch hook to check if jobs are saved in a single request
   const { data: savedJobsStatus = {} } = useBatchJobSavedStatus(
     isAuthenticated && isJobSeeker ? jobIds : []
   );
 
   // Check if any filters are applied
-  const hasFilters = keyword || location || jobTypes.length > 0 || experienceLevel !== 'ANY';
+  const hasFilters = keyword || location || jobTypes?.length > 0 || experienceLevel !== 'ANY';
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-jobboard-purple"></div>
-      </div>
-    );
+    return <div data-testId='loading-spinner'><LoadingSpinner /></div>
   }
 
   if (error) {
@@ -72,7 +67,7 @@ const JobList: React.FC = () => {
   }
 
   return (
-    <div>
+    <div data-testId="job-list">
       {/* Search results and sorting controls */}
       <div className="mb-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
@@ -86,7 +81,7 @@ const JobList: React.FC = () => {
               </p>
             )}
           </div>
-          
+
           {/* Sorting controls */}
           <JobSorting />
         </div>
@@ -95,8 +90,9 @@ const JobList: React.FC = () => {
       {/* Job listings - Responsive Grid Layout with !important */}
       <div className="grid grid-cols-1 lg:!grid-cols-2 gap-4 mb-8">
         {jobs.map((job: Job) => (
-          <JobCard 
-            key={job.id} 
+          <JobCard
+            data-testId="job-card"
+            key={job.id}
             job={job}
             isCompact={false}
             savedStatus={isJobSeeker && isAuthenticated ? savedJobsStatus[job.id] : undefined}
