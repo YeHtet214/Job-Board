@@ -44,9 +44,10 @@ export const useBatchJobSavedStatus = (jobIds: string[] = []) => {
   
   return useQuery<Record<string, JobSavedStatus>>({
     queryKey: savedJobKeys.batch(uniqueJobIds),
-    queryFn: async () => {
+    queryFn: async (): Promise<Record<string, JobSavedStatus>> => {
       try {
-        return await savedJobService.areJobsSaved(uniqueJobIds);
+        const result = await savedJobService.areJobsSaved(uniqueJobIds);
+        return result || {};
       } catch (error) {
         console.error('Error checking saved job status:', error);
         // Return empty object instead of throwing to prevent cascade failures

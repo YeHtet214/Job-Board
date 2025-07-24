@@ -16,7 +16,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
   imagePosition = 'left',
 }) => {
   return (
-    <div className="h-screen bg-jb-bg relative">
+    <div className="h-screen relative">
       {/* Background pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10" aria-hidden="true" />
 
@@ -26,11 +26,11 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
 
       {/* Mobile layout */}
       <div className="lg:hidden relative min-h-screen">
-        <div 
+        {/* <div 
           className="absolute inset-0 bg-gradient-to-b from-jb-bg/40 via-jb-bg/60 to-jb-bg/80"
           style={{ backgroundImage: `url(${imageSrc})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
           aria-hidden="true"
-        />
+        /> */}
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-6">
           <div className="w-full max-w-md text-center mb-6">
             <h1 className="text-3xl font-bold tracking-tight text-jb-text mb-2">{title}</h1>
@@ -45,7 +45,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
       {/* Desktop layout */}
       <div className="hidden lg:flex min-h-screen w-full relative">
         {/* Background image and gradient overlay */}
-        <div 
+        {/* <div 
           className="absolute inset-0"
           style={{ backgroundImage: `url(${imageSrc})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
           aria-hidden="true"
@@ -57,7 +57,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
               : 'bg-gradient-to-l from-jb-bg via-jb-bg/90 to-transparent'
           }`}
           aria-hidden="true"
-        />
+        /> */}
 
         {/* Content wrapper */}
         <div className="flex flex-row w-full relative z-10">

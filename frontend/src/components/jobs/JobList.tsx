@@ -17,7 +17,7 @@ const JobList: React.FC = () => {
   const isJobSeeker = currentUser?.role === 'JOBSEEKER';
 
   // Get all job IDs for batch checking saved status
-  const jobIds = jobs.map(job => job.id);
+  const jobIds = jobs.map(job => job.id );
 
   // Use the batch hook to check if jobs are saved in a single request
   const { data: savedJobsStatus = {} } = useBatchJobSavedStatus(

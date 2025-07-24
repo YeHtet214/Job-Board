@@ -24,16 +24,15 @@ interface VerificationAlertType {
 }
 
 const VerificationAlert = ({ handleResendVerification, resendingVerification }: VerificationAlertType) => (
-  <Alert className="block bg-amber-50 border-amber-200 mb-4 w-full">
+  <Alert className="block bg-jb-danger/15 border-jb-danger mb-4 w-full">
     <div className="flex items-center justify-between w-full">
-      <Mail className="h-4 w-4 text-amber-600 mr-2" />
-      <AlertDescription className="text-amber-800 flex-1">
+      <Mail className="h-4 w-4 text-jb-danger mr-2" />
+      <AlertDescription className="text-jb-danger flex-1">
         Your email is not verified. Need a new verification email?
       </AlertDescription>
       <Button
-        variant="outline"
+        variant="destructive"
         size="sm"
-        className="ml-2 border-amber-500 text-amber-700 hover:bg-amber-100 hover:text-amber-800"
         onClick={handleResendVerification}
         disabled={resendingVerification}
       >
@@ -96,7 +95,6 @@ const LoginPage: React.FC = () => {
         setFormError({ general: errorMessage });
         toast({
           title: "Login Failed",
-          description: errorMessage,
           variant: "destructive"
         });
       }
@@ -157,7 +155,7 @@ const LoginPage: React.FC = () => {
     >
       <Card className="border-jb-surface shadow-lg">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center text-jb-text">
+          <CardTitle className="text-2xl font-bold text-center">
             Welcome back
           </CardTitle>
           <CardDescription className="text-center text-jb-text-muted">

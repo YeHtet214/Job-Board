@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik, FormikHelpers, Field, ErrorMessage } from 'formik';
-import { Form } from '@/components/forms/components';
+import { Form } from '@/components/forms';
 import AuthLayout from '@/components/layouts/AuthLayout';
 
 // Shadcn UI components
@@ -58,17 +58,17 @@ const ResetPasswordPage: React.FC = () => {
   };
 
   const handleSubmit = async (
-    values: ResetPasswordRequest, 
+    values: ResetPasswordRequest,
     { setSubmitting }: FormikHelpers<ResetPasswordRequest>
   ) => {
     setFormError(null);
-    
+
     if (!token) {
       setFormError('Invalid reset link. Please request a new password reset link.');
       setSubmitting(false);
       return;
     }
-    
+
     try {
       await authService.resetPassword(token, values.newPassword);
       setIsSuccess(true);
@@ -77,7 +77,7 @@ const ResetPasswordPage: React.FC = () => {
         description: "Your password has been reset successfully. You can now log in with your new password.",
         variant: "default",
       });
-      
+
       // Redirect to login page after 3 seconds
       setTimeout(() => {
         navigate('/login');
@@ -211,9 +211,9 @@ const ResetPasswordPage: React.FC = () => {
         </CardContent>
 
         <CardFooter className="flex justify-center border-t p-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-jb-text-muted">
             Remember your password?{' '}
-            <Link to="/login" className="font-medium text-primary hover:underline">
+            <Link to="/login" className="font-medium !text-jb-primary hover:underline">
               Back to login
             </Link>
           </p>

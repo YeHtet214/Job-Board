@@ -264,7 +264,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="text-2xl font-bold text-jb-primary z-10">
+          <Link to="/" className="text-2xl font-bold text-jb-primary">
             JobBoard
           </Link>
 

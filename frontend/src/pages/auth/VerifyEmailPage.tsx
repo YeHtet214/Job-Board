@@ -79,23 +79,23 @@ const VerifyEmailPage: React.FC = () => {
                 return (
                     <div className="flex flex-col items-center gap-4">
                         <Loader2 className="h-12 w-12 text-blue-600 animate-spin" />
-                        <p className="text-jobboard-darkblue">Verifying your email address...</p>
+                        <p className="text-jb-primary">Verifying your email address...</p>
                     </div>
                 );
             case 'pending':
                 return (
-                    <div className="flex flex-col items-center gap-6">
-                        <div className="rounded-full bg-blue-100 p-3">
+                    <div className="flex flex-col items-center gap-6 border border-jb-primary/10 p-6 rounded-md">
+                        <div className="rounded-full bg-jb-primary/40 p-3">
                             <Mail className="h-12 w-12 sm:h-16 sm:w-16 text-blue-600" />
                         </div>
-                        <h2 className="text-xl sm:text-2xl font-semibold text-blue-600">Check Your Email</h2>
-                        <div className="bg-blue-50 border border-blue-200 text-blue-800 px-4 py-3 rounded-md w-full">
+                        <h2 className="text-xl sm:text-2xl font-semibold text-jb-primary">Check Your Email</h2>
+                        <div className="bg-jb-primary/10 border border-jb-primary/10 text-jb-primary px-4 py-3 rounded-md w-full">
                             {message}
                         </div>
-                        <p className="text-sm text-gray-500 text-center">
+                        <p className="text-sm text-jb-text-muted text-center">
                             The verification link is valid for 24 hours. If you don't see the email, check your spam folder.
                         </p>
-                        <div className="flex flex-col sm:!flex-row gap-4 mt-2 w-full">
+                        <div className="flex flex-col sm:!flex-row gap-4 mt-2">
                             <Button 
                                 onClick={() => navigate('/login')}
                                 variant="outline"
@@ -131,7 +131,7 @@ const VerifyEmailPage: React.FC = () => {
                         <div className="flex gap-4 mt-2">
                             <Button 
                                 onClick={() => navigate('/login')}
-                                className="px-4 py-2"
+                                variant="default"
                             >
                                 Go to Login
                             </Button>
@@ -148,7 +148,7 @@ const VerifyEmailPage: React.FC = () => {
                         <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-md w-full">
                             {message}
                         </div>
-                        <p className="text-sm text-gray-500 text-center">
+                        <p className="text-sm text-jb-text-muted text-center">
                             Your verification link may have expired. Verification links are valid for 24 hours.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 mt-2 w-full">
@@ -162,7 +162,7 @@ const VerifyEmailPage: React.FC = () => {
                             {email && (
                                 <Button 
                                     onClick={handleResendVerification}
-                                    className="w-full"
+                                    variant="default"
                                     disabled={isResending}
                                 >
                                     {isResending ? (
@@ -183,8 +183,8 @@ const VerifyEmailPage: React.FC = () => {
 
     return (
         <div className="flex justify-center items-center min-h-[80vh] px-4 py-8">
-            <div className="bg-white rounded-lg shadow-md p-4 sm:p-8 max-w-md w-full">
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">Email Verification</h1>
+            <div className="bg-jb-surface rounded-lg shadow-md p-4 sm:p-6 max-w-xl w-full">
+                <h1 className="text-2xl sm:text-3xl font-bold text-jb-text mb-6 text-center">Email Verification</h1>
                 {renderContent()}
             </div>
         </div>

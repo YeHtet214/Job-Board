@@ -149,14 +149,20 @@ export const userSignIn = async (email: string, password: string) => {
   const user = await checkUserExists(email);
 
   if (!user) {
-    throw new UnauthorizedError('Invalid credentials');
+    throw new UnauthorizedError('User not found');
+  } else if (!user.passwordHash) {
+    throw new UnauthorizedError('User password not found');
   }
 
   const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
 
+  console.log("isPasswordValid: ", isPasswordValid)
+
   if (!isPasswordValid) {
     throw new UnauthorizedError('Invalid credentials');
   }
+
+  console.log("emial not verified: ", user.isEmailVerified)
 
   if (!user.isEmailVerified) {
     throw new UnauthorizedError('Please verify your email before signing in');
